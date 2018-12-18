@@ -76,7 +76,10 @@ def is_on_wifi():
 
   data = ''.join(''.join(w.decode("hex")[::-1] for w in l[14:49].split()) for l in result[1:])
 
-  return "\x00".join("WIFI") in data
+  is_wifi = "\x00".join("WIFI") in data
+  is_iphone = "\x00".join("iPhone") in data
+  
+  return is_wifi and not is_iphone
 
 
 class Uploader(object):
